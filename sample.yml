@@ -1,0 +1,22 @@
+version: "3.0"
+services:
+  api-server-1:
+    image: jackytck/api-server:v1.2.3
+    ports:
+      - "8082:8082"
+    restart: unless-stopped
+  api-server-2:
+    image: jackytck/api-server:v4.5.6
+    network_mode: "host"
+    hostname: edemo0
+    ports:
+      - "8083:8082"
+    restart: always
+  gdal:
+    image: jackytck/node-gdal-docker:v0.0.1
+    network_mode: "host"
+    environment:
+      - PORT=8085
+    ports:
+      - "8085:8085"
+    restart: always
